@@ -1,5 +1,7 @@
 package com.example.movies
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +20,7 @@ class LandingFragment : Fragment() {
         binding = FragmentLandingBinding.inflate(layoutInflater)
 
         binding.root.post(Runnable {
-            val rootWidth = binding.root.measuredWidth
-
-            val params = binding.landingOneWeek.layoutParams
-            params.width = (rootWidth - 18 * 2) / 3
-            binding.landingOneWeek.setLayoutParams(params)
+            updateOneWeekBlockWidth()
         })
 
         return binding.root
@@ -32,8 +30,24 @@ class LandingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLearnMore.setOnClickListener {
-            val childView = binding.landingAboutProjectBlock
-            binding.fragmentLandingScroll.smoothScrollTo(0, childView.top);
+            scrollToLearnMoreBlock()
         }
+
+        binding.buttonGithub.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/YarZav"))
+            startActivity(browserIntent)
+        }
+    }
+
+    private fun scrollToLearnMoreBlock() {
+        val childView = binding.landingAboutProjectBlock
+        binding.fragmentLandingScroll.smoothScrollTo(0, childView.top)
+    }
+
+    private fun updateOneWeekBlockWidth() {
+        val rootWidth = binding.root.measuredWidth
+        val oneWeekLayoutParams = binding.landingOneWeek.layoutParams
+        oneWeekLayoutParams.width = (rootWidth - 18 * 2) / 3
+        binding.landingOneWeek.setLayoutParams(oneWeekLayoutParams)
     }
 }
