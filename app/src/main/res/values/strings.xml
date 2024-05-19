@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="landing">landing</string>
@@ -13,6 +13,7 @@
     <string name="landing_one_week">1 неделя</string>
     <string name="landing_four_week">4 недели</string>
     <string name="github">GitHub</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="login_hint">Введите имя</string>
+    <string name="password_hint">Введите пароль</string>
 </resources>
