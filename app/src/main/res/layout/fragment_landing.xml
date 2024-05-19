@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_landing"
+    android:id="@+id/fragment_landing_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LandingFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@color/very_dark_blue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/very_dark_blue">
 
             <Button
                 android:id="@+id/button_landing"
@@ -85,21 +81,161 @@
                 app:layout_constraintTop_toBottomOf="@+id/landing_image" />
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="30dp"
+                android:alpha="0.5"
                 android:text="@string/landing_description"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="13sp"
-                android:textAlignment="center"
-                android:alpha="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/landing_title" />
 
+            <Button
+                android:id="@+id/button_learn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_learn_more_background"
+                android:text="@string/landing_learn_more"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/landing_about_project_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/text_view_about_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/landing_about_project_title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/text_view_about_project_title_separate_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="18dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_about_project" />
+
+            <TextView
+                android:id="@+id/text_view_about_project_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/landing_about_project_subtitle"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_about_project_title_separate_line" />
+
+            <TextView
+                android:id="@+id/landing_about_project_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/landing_about_project_description"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_about_project_subtitle" />
+
+            <TextView
+                android:id="@+id/landing_about_project_time_to_create"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/landing_about_project_time_to_create"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/landing_about_project_description" />
+
+            <TextView
+                android:id="@+id/landing_about_project_stages"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/landing_about_project_stages"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/landing_about_project_time_to_create" />
+            
+            <TextView
+                android:id="@+id/landing_one_week"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:text="@string/landing_one_week"
+                android:textSize="11sp"
+                android:textColor="@color/black"
+                android:background="@color/aqua_green"
+                android:gravity="center"
+                android:layout_marginTop="60dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="69dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/landing_about_project_stages" />
+
+            <TextView
+                android:id="@+id/landing_four_week"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="69dp"
+                android:background="@color/porcelain"
+                android:gravity="center"
+                android:text="@string/landing_four_week"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/landing_one_week"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/landing_about_project_stages" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</ScrollView>

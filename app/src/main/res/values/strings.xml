@@ -4,4 +4,12 @@
     <string name="landing">landing</string>
     <string name="landing_title">Учебный проект студента факультета Веб-разработки.</string>
     <string name="landing_description">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</string>
+    <string name="landing_learn_more">Узнать больше</string>
+    <string name="landing_about_project_title">О проекте</string>
+    <string name="landing_about_project_subtitle">Дипломный проект включал 5 этапов</string>
+    <string name="landing_about_project_description">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</string>
+    <string name="landing_about_project_time_to_create">На выполнение диплома ушло 5 недель</string>
+    <string name="landing_about_project_stages">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</string>
+    <string name="landing_one_week">1 неделя</string>
+    <string name="landing_four_week">4 недели</string>
 </resources>
