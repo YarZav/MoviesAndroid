@@ -15,5 +15,7 @@
     <string name="github">GitHub</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="login_hint">Введите имя</string>
+    <string name="email_hint">Введите почту</string>
     <string name="password_hint">Введите пароль</string>
+    <string name="already_sign_in">Уже зарегестрированы?</string>
 </resources>
