@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".signup.SignUpFragment">
+    tools:context=".signin.SignInFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,35 +30,12 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="30dp"
             android:gravity="center"
-            android:text="@string/welcome"
+            android:text="@string/glad_to_see"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_landing" />
-
-        <!-- Name-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="30dp"
-            android:hint="@string/login_hint"
-            android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/name_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:paddingBottom="10dp"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- email-->
         <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +49,7 @@
             android:paddingTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/email_edit_text"
@@ -109,13 +86,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button_sign_up"
+            android:id="@+id/button_sign_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/royal_blue_corner_radius_3"
-            android:text="@string/sign_up"
+            android:text="@string/sign_in"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -137,18 +114,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:text="@string/already_sign_in"
+                android:text="@string/not_sign_in"
                 android:textColor="@color/star_dust"
                 android:textSize="15sp"
                 tools:layout_editor_absoluteX="22dp"
                 tools:layout_editor_absoluteY="551dp" />
 
             <Button
-                android:id="@+id/button_sign_in"
+                android:id="@+id/button_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:background="@color/white"
-                android:text="@string/sign_in"
+                android:text="@string/sign_up"
                 android:textColor="@color/royal_blue"
                 android:textSize="15sp"
                 tools:layout_editor_absoluteX="199dp"

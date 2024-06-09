@@ -28,8 +28,6 @@ class Networking {
                 signUpOutputStreamWriter(connection, jsonObject)
 
                 signUpDataInputStreamReader(connection, completionData)
-
-                signUpErrorInputStreamReader(connection)
             } catch (exception: Exception) {
                 completionError(exception)
             }
@@ -91,20 +89,6 @@ class Networking {
             val gson = Gson()
             val userData = gson.fromJson(responseString, UserData::class.java)
             completionData(userData)
-        }
-    }
-    private fun signUpErrorInputStreamReader(connection: HttpURLConnection) {
-        val reader = InputStreamReader(connection.errorStream)
-        reader.use { input ->
-            val response = StringBuilder()
-            val bufferReader = BufferedReader(input)
-
-            bufferReader.forEachLine {
-                response.append(it.trim())
-            }
-
-            val responseString = response.toString()
-            throw Exception(responseString)
         }
     }
 }

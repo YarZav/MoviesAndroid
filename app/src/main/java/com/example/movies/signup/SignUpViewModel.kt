@@ -15,9 +15,11 @@ class SignUpViewModel(private val fragment: SignUpFragment?): ViewModel() {
             userData,
             completionData = {
                 fragment?.setLoading(false)
+                fragment?.signIn(it)
             },
             completionError = {
                 fragment?.setLoading(false)
+                fragment?.showError(it)
             }
         )
     }

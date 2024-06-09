@@ -1,21 +1,19 @@
-package com.example.movies.signup
+package com.example.movies.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.example.movies.R
-import com.example.movies.databinding.FragmentSignUpBinding
+import com.example.movies.databinding.FragmentSignInBinding
 import com.example.movies.models.UserData
-import java.lang.Exception
 
-class SignUpFragment : Fragment() {
-    private lateinit var binding: FragmentSignUpBinding
-    private lateinit var viewModel: SignUpViewModel
+class SignInFragment : Fragment() {
+    private lateinit var binding: FragmentSignInBinding
+    private lateinit var viewModel: SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +21,14 @@ class SignUpFragment : Fragment() {
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
 
-        viewModel = SignUpViewModel(this)
+        viewModel = SignInViewModel(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignUpBinding.inflate(layoutInflater)
+        binding = FragmentSignInBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -41,12 +39,12 @@ class SignUpFragment : Fragment() {
             moveToLanding()
         }
 
-        binding.buttonSignUp.setOnClickListener {
-            signUp()
+        binding.buttonSignIn.setOnClickListener {
+            signIn()
         }
 
-        binding.buttonSignIn.setOnClickListener {
-            signIn(null)
+        binding.buttonSignUp.setOnClickListener {
+            signUp()
         }
     }
 
@@ -57,17 +55,30 @@ class SignUpFragment : Fragment() {
                 R.id.landingFragment ->
                     findNavController().popBackStack()
                 else ->
-                    findNavController().navigate(R.id.action_landingFragment_to_signUpFragment)
+                    findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
             }
         }
     }
 
-    private fun signUp() {
-        val name = binding.nameEditText.text.toString()
+    private fun signIn() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        viewModel.signUp(name, email, password)
+//        viewModel.signIn(name, email, password)
+    }
+
+    private fun signUp() {
+        activity?.runOnUiThread(Runnable {
+            val previousFragment = findNavController().previousBackStackEntry?.destination?.id
+            previousFragment?.let {
+                when (previousFragment) {
+                    R.id.signUpFragment ->
+                        findNavController().popBackStack()
+                    else ->
+                        findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+                }
+            }
+        })
     }
 
     fun setLoading(isLoading: Boolean) {
@@ -76,26 +87,6 @@ class SignUpFragment : Fragment() {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
                 binding.progressBar.visibility = View.INVISIBLE
-            }
-        })
-    }
-
-    fun showError(error: Exception) {
-        activity?.runOnUiThread(Runnable {
-            Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
-        })
-    }
-
-    fun signIn(userData: UserData?) {
-        activity?.runOnUiThread(Runnable {
-            val previousFragment = findNavController().previousBackStackEntry?.destination?.id
-            previousFragment?.let {
-                when (previousFragment) {
-                    R.id.signInFragment ->
-                        findNavController().popBackStack()
-                    else ->
-                        findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-                }
             }
         })
     }

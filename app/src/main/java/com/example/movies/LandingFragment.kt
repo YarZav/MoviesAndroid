@@ -48,6 +48,10 @@ class LandingFragment : Fragment() {
         binding.buttonSignUp.setOnClickListener {
             openSignUp()
         }
+
+        binding.buttonSignIn.setOnClickListener {
+            openSignIn()
+        }
     }
 
     private fun scrollToLearnMoreBlock() {
@@ -71,5 +75,9 @@ class LandingFragment : Fragment() {
 
     private fun openSignUp() {
         findNavController().navigate(R.id.action_landingFragment_to_signUpFragment)
+    }
+
+    private fun openSignIn() {
+        findNavController().navigate(R.id.action_landingFragment_to_signInFragment)
     }
 }

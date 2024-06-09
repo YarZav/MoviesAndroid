@@ -14,8 +14,10 @@
     <string name="landing_four_week">4 недели</string>
     <string name="github">GitHub</string>
     <string name="welcome">Добро пожаловать!</string>
+    <string name="glad_to_see">Рады видеть!</string>
     <string name="login_hint">Введите имя</string>
     <string name="email_hint">Введите почту</string>
     <string name="password_hint">Введите пароль</string>
     <string name="already_sign_in">Уже зарегестрированы?</string>
+    <string name="not_sign_in">Ещё не зарегистрированы?</string>
 </resources>

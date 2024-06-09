@@ -19,7 +19,38 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_landingFragment_to_signInFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_landingFragment_to_signUpFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="signInFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="371" />
+                            <option name="y" value="244" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_signInFragment_to_landingFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_signInFragment_to_signUpFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -41,6 +72,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_signUpFragment_to_landingFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_signUpFragment_to_signInFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
