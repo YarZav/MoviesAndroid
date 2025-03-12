@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.example.movies.LandingFragmentDirections
 import com.example.movies.R
 import com.example.movies.databinding.FragmentSignUpBinding
 import com.example.movies.models.UserData
+import com.example.movies.signin.SignInFragment
+import com.example.movies.signin.SignInFragmentDirections
 import java.lang.Exception
 
 class SignUpFragment : Fragment() {
@@ -51,15 +54,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun moveToLanding() {
-        val previousFragment = findNavController().previousBackStackEntry?.destination?.id
-        previousFragment?.let {
-            when (previousFragment) {
-                R.id.landingFragment ->
-                    findNavController().popBackStack()
-                else ->
-                    findNavController().navigate(R.id.action_landingFragment_to_signUpFragment)
-            }
-        }
+        findNavController().popBackStack()
     }
 
     private fun signUp() {
@@ -87,7 +82,11 @@ class SignUpFragment : Fragment() {
     }
 
     fun signIn(userData: UserData?) {
-        findNavController().popBackStack()
-        findNavController().navigate(R.id.action_landingFragment_to_signInFragment)
+        activity?.runOnUiThread(Runnable {
+            findNavController().popBackStack()
+            val direction =
+                LandingFragmentDirections.actionLandingFragmentToSignInFragment(userData)
+            findNavController().navigate(direction)
+        })
     }
 }

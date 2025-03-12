@@ -15,7 +15,8 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_landingFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -34,5 +35,9 @@
         <action
             android:id="@+id/action_signInFragment_to_landingFragment"
             app:destination="@id/landingFragment" />
+        <argument
+            android:name="userData"
+            app:argType="com.example.movies.models.UserData"
+            app:nullable="true" />
     </fragment>
 </navigation>

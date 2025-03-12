@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.example.movies.R
 import com.example.movies.databinding.FragmentSignInBinding
 import com.example.movies.models.UserData
+import java.lang.Exception
 
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var viewModel: SignInViewModel
+
+    private val args: SignInFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,8 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.emailEditText.setText(args.userData?.email)
+
         binding.buttonLanding.setOnClickListener {
             moveToLanding()
         }
@@ -55,8 +62,9 @@ class SignInFragment : Fragment() {
     private fun signIn() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val userData = UserData("", email, password)
 
-//        viewModel.signIn(name, email, password)
+        viewModel.signIn(userData)
     }
 
     private fun signUp() {
@@ -71,6 +79,12 @@ class SignInFragment : Fragment() {
             } else {
                 binding.progressBar.visibility = View.INVISIBLE
             }
+        })
+    }
+
+    fun showError(error: Exception) {
+        activity?.runOnUiThread(Runnable {
+            Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
         })
     }
 }

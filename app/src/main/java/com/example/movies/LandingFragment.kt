@@ -78,6 +78,8 @@ class LandingFragment : Fragment() {
     }
 
     private fun openSignIn() {
-        findNavController().navigate(R.id.action_landingFragment_to_signInFragment)
+        val direction =
+            LandingFragmentDirections.actionLandingFragmentToSignInFragment(null)
+        findNavController().navigate(direction)
     }
 }
