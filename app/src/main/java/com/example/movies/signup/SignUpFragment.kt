@@ -87,16 +87,7 @@ class SignUpFragment : Fragment() {
     }
 
     fun signIn(userData: UserData?) {
-        activity?.runOnUiThread(Runnable {
-            val previousFragment = findNavController().previousBackStackEntry?.destination?.id
-            previousFragment?.let {
-                when (previousFragment) {
-                    R.id.signInFragment ->
-                        findNavController().popBackStack()
-                    else ->
-                        findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-                }
-            }
-        })
+        findNavController().popBackStack()
+        findNavController().navigate(R.id.action_landingFragment_to_signInFragment)
     }
 }

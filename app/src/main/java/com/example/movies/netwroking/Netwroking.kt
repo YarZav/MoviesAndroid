@@ -37,7 +37,7 @@ class Networking {
     }
 
     private fun signUpHttpURLConnection(userData: UserData): HttpURLConnection {
-        val connection = URL("http://10.0.2.2:3000/signup").openConnection() as HttpURLConnection
+        val connection = URL(baseUrl).openConnection() as HttpURLConnection
         connection.requestMethod = "POST"
         connection.connectTimeout = 3000
         connection.readTimeout = 3000

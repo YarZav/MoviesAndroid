@@ -49,15 +49,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun moveToLanding() {
-        val previousFragment = findNavController().previousBackStackEntry?.destination?.id
-        previousFragment?.let {
-            when (previousFragment) {
-                R.id.landingFragment ->
-                    findNavController().popBackStack()
-                else ->
-                    findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-            }
-        }
+        findNavController().popBackStack()
     }
 
     private fun signIn() {
@@ -68,17 +60,8 @@ class SignInFragment : Fragment() {
     }
 
     private fun signUp() {
-        activity?.runOnUiThread(Runnable {
-            val previousFragment = findNavController().previousBackStackEntry?.destination?.id
-            previousFragment?.let {
-                when (previousFragment) {
-                    R.id.signUpFragment ->
-                        findNavController().popBackStack()
-                    else ->
-                        findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
-                }
-            }
-        })
+        findNavController().popBackStack()
+        findNavController().navigate(R.id.action_landingFragment_to_signUpFragment)
     }
 
     fun setLoading(isLoading: Boolean) {
