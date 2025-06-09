@@ -2,38 +2,40 @@ package com.example.movies.netwroking
 
 import com.example.movies.models.Jwt
 import com.example.movies.models.UserData
-import com.google.gson.Gson
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
+import com.example.movies.netwroking.signin.SignInConnection
+import com.example.movies.netwroking.signin.SignInInputStreamReader
+import com.example.movies.netwroking.signin.SignInMapper
+import com.example.movies.netwroking.signin.SignInOutputStreamWriter
+import com.example.movies.netwroking.signup.SignUpConnection
+import com.example.movies.netwroking.signup.SignUpInputStreamReader
+import com.example.movies.netwroking.signup.SignUpMapper
+import com.example.movies.netwroking.signup.SignUpOutputStreamWriter
+import java.io.IOException
 import java.lang.Exception
 import java.net.HttpURLConnection
-import java.net.URL
 
 class Networking {
-    private val baseUrl = "http://192.168.0.107:3000"
+    companion object {
+        const val baseUrl = "http://192.168.0.107:3000"
+    }
 
     fun signUp(
         userData: UserData,
         completionData: (UserData) -> Unit,
         completionError: (Exception) -> Unit
     ) {
-        // Запускаем новый поток
         Thread(Runnable {
-            val connection = signUpHttpURLConnection()
+            val connection = SignUpConnection().connection
 
             try {
-                val jsonObject = signUpJsonObject(userData)
-                signUpOutputStreamWriter(connection, jsonObject)
-
-                signUpDataInputStreamReader(connection, completionData)
+                val jsonObject = SignUpMapper().jsonObject(userData)
+                SignUpOutputStreamWriter().writer(connection, jsonObject)
+                SignUpInputStreamReader().reader(connection, completionData)
             } catch (exception: Exception) {
                 completionError(exception)
+            } finally {
+                connection.disconnect()
             }
-
-            connection.disconnect()
         }).start()
     }
 
@@ -42,131 +44,18 @@ class Networking {
         completionData: (Jwt) -> Unit,
         completionError: (Exception) -> Unit
     ) {
-        // Запускаем новый поток
         Thread(Runnable {
-            val connection = signInHttpURLConnection()
+            val connection = SignInConnection().connection
 
             try {
-                val jsonObject = signInJsonObject(userData)
-                signInOutputStreamWriter(connection, jsonObject)
-
-                signInDataInputStreamReader(connection, completionData)
+                val jsonObject = SignInMapper().jsonObject(userData)
+                SignInOutputStreamWriter().writer(connection, jsonObject)
+                SignInInputStreamReader().reader(connection, completionData)
             } catch (exception: Exception) {
                 completionError(exception)
+            } finally {
+                connection.disconnect()
             }
-
-            connection.disconnect()
         }).start()
-    }
-
-    private fun signUpHttpURLConnection(): HttpURLConnection {
-        val connection = URL(baseUrl + "/signup").openConnection() as HttpURLConnection
-        connection.requestMethod = "POST"
-        connection.connectTimeout = 3000
-        connection.readTimeout = 3000
-
-        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
-
-        return connection
-    }
-
-    private fun signInHttpURLConnection(): HttpURLConnection {
-        val connection = URL(baseUrl+ "/signin").openConnection() as HttpURLConnection
-        connection.requestMethod = "POST"
-        connection.connectTimeout = 3000
-        connection.readTimeout = 3000
-
-        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
-
-        return connection
-    }
-
-    private fun signUpJsonObject(userData: UserData): JSONObject {
-        val jsonObject = JSONObject()
-        jsonObject.accumulate("name", userData.name)
-        jsonObject.accumulate("email", userData.email)
-        jsonObject.accumulate("password", userData.password)
-        return jsonObject
-    }
-
-    private fun signInJsonObject(userData: UserData): JSONObject {
-        val jsonObject = JSONObject()
-        jsonObject.accumulate("email", userData.email)
-        jsonObject.accumulate("password", userData.password)
-        return jsonObject
-    }
-
-    private fun signUpOutputStreamWriter(
-        connection: HttpURLConnection,
-        jsonObject: JSONObject
-    ) {
-        val writer = OutputStreamWriter(connection.outputStream, "UTF-8")
-        writer.use { output ->
-            val request = jsonObject.toString()
-            val bufferWriter = BufferedWriter(output)
-
-            bufferWriter.write(request)
-
-            bufferWriter.flush()
-            bufferWriter.close()
-            writer.close()
-        }
-    }
-
-    private fun signInOutputStreamWriter(
-        connection: HttpURLConnection,
-        jsonObject: JSONObject
-    ) {
-        val writer = OutputStreamWriter(connection.outputStream, "UTF-8")
-        writer.use { output ->
-            val request = jsonObject.toString()
-            val bufferWriter = BufferedWriter(output)
-
-            bufferWriter.write(request)
-
-            bufferWriter.flush()
-            bufferWriter.close()
-            writer.close()
-        }
-    }
-
-    private fun signUpDataInputStreamReader(
-        connection: HttpURLConnection,
-        completionData: (UserData) -> Unit
-    ) {
-        val reader = InputStreamReader(connection.inputStream)
-        reader.use { input ->
-            val response = StringBuilder()
-            val bufferReader = BufferedReader(input)
-
-            bufferReader.forEachLine {
-                response.append(it.trim())
-            }
-
-            val responseString = response.toString()
-            val gson = Gson()
-            val userData = gson.fromJson(responseString, UserData::class.java)
-            completionData(userData)
-        }
-    }
-
-    private fun signInDataInputStreamReader(
-        connection: HttpURLConnection,
-        completionData: (Jwt) -> Unit
-    ) {
-        val reader = InputStreamReader(connection.inputStream)
-        reader.use { input ->
-            val response = StringBuilder()
-            val bufferReader = BufferedReader(input)
-
-            bufferReader.forEachLine {
-                response.append(it.trim())
-            }
-
-            val responseString = response.toString()
-            val gson = Gson()
-            val jwt = gson.fromJson(responseString, Jwt::class.java)
-            completionData(jwt)
-        }
     }
 }

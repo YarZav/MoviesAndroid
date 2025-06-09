@@ -15,12 +15,7 @@ class NetworkChecker(val connectivityManager: ConnectivityManager) {
 
 
     private fun hasValidInternetConnection(): Boolean {
-        val network = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            connectivityManager.activeNetwork
-        } else {
-            return false
-        }
-
+        val network = connectivityManager.activeNetwork
         val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
         val hasWiFi = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
         val hasCellular = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)

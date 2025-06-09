@@ -13,7 +13,6 @@ class SignInViewModel(private val fragment: SignInFragment?): ViewModel() {
             userData,
             completionData = {
                 fragment?.setLoading(false)
-//                fragment?.signIn(it)
                 println("Token ${it.token}")
             },
             completionError = {
