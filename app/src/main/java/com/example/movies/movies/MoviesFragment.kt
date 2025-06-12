@@ -26,4 +26,12 @@ class MoviesFragment : Fragment() {
         binding = FragmentMoviesBinding.inflate(layoutInflater)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbar.setNavigationOnClickListener {
+            println("Menu")
+        }
+    }
 }
