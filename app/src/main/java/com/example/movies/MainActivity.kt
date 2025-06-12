@@ -1,7 +1,6 @@
 package com.example.movies
 
 import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movies.databinding.ActivityMainBinding
@@ -9,11 +8,7 @@ import com.example.movies.netwroking.NetworkChecker
 
 class MainActivity : AppCompatActivity() {
     private val networkChecker by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            NetworkChecker(getSystemService(ConnectivityManager::class.java))
-        } else {
-            TODO("VERSION.SDK_INT < M")
-        }
+        NetworkChecker(getSystemService(ConnectivityManager::class.java))
     }
     private lateinit var binding: ActivityMainBinding
 

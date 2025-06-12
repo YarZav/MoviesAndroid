@@ -1,7 +1,7 @@
 package com.example.movies.netwroking.signup
 
 import com.example.movies.models.UserData
-import com.example.movies.netwroking.ErrorInputStreamReader
+import com.example.movies.netwroking.error.ErrorInputStreamReader
 import com.example.movies.netwroking.isOk
 import com.google.gson.Gson
 import java.io.BufferedReader

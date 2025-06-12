@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -85,6 +86,16 @@ class SignInFragment : Fragment() {
     fun showError(error: Exception) {
         activity?.runOnUiThread(Runnable {
             Toast.makeText(activity, error.message, Toast.LENGTH_LONG).show()
+        })
+    }
+
+    fun movies() {
+        activity?.runOnUiThread(Runnable {
+            val navController = findNavController()
+            navController.navigate(R.id.moviesFragment, null, NavOptions.Builder()
+                .setPopUpTo(navController.graph.startDestinationId, true)
+                .build()
+            )
         })
     }
 }

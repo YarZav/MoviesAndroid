@@ -20,4 +20,9 @@
     <string name="password_hint">Введите пароль</string>
     <string name="already_sign_in">Уже зарегестрированы?</string>
     <string name="not_sign_in">Ещё не зарегистрированы?</string>
+    <string name="general">Главная</string>
+    <string name="movies">Фильмв</string>
+    <string name="saved_movies">Сохранённые фильмы</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
 </resources>

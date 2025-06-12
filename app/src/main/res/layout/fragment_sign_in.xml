@@ -122,6 +122,7 @@
 
             <Button
                 android:id="@+id/button_sign_up"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:background="@color/white"

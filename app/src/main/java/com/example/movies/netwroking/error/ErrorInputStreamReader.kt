@@ -1,4 +1,4 @@
-package com.example.movies.netwroking
+package com.example.movies.netwroking.error
 
 import java.io.BufferedReader
 import java.io.IOException
