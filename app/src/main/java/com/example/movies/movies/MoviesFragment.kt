@@ -1,12 +1,7 @@
 package com.example.movies.movies
 
-import android.R.string
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.Bundle
 import android.text.SpannableString
-import android.text.TextPaint
-import android.text.style.LineBackgroundSpan
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.example.movies.R
 import com.example.movies.databinding.FragmentMoviesBinding
+import com.example.movies.menu.MenuItemUnderlineSpan
 
 
 class MoviesFragment : Fragment() {
@@ -60,44 +56,7 @@ class MoviesFragment : Fragment() {
 
     private fun underlineMenuItem(menuItem: MenuItem) {
         val spannableString = SpannableString(menuItem.title)
-        spannableString.setSpan(CustomUnderlineSpan(), 0, spannableString.length, 0)
+        spannableString.setSpan(MenuItemUnderlineSpan(), 0, spannableString.length, 0)
         menuItem.title = spannableString
-    }
-}
-
-class CustomUnderlineSpan(
-    private val underlineThickness: Float = 3f,
-    private val underlineSpace: Int = 7
-): LineBackgroundSpan {
-
-    override fun drawBackground(
-        canvas: Canvas,
-        paint: Paint,
-        left: Int,
-        right: Int,
-        top: Int,
-        baseline: Int,
-        bottom: Int,
-        text: CharSequence,
-        start: Int,
-        end: Int,
-        lnum: Int
-    ) {
-        val textPaint = paint as TextPaint
-        val originalColor = textPaint.color
-        textPaint.color = textPaint.color
-        textPaint.strokeWidth = underlineThickness
-
-        val right = paint.measureText(text.toString())
-        canvas.drawLine(
-            left.toFloat(),
-            bottom.toFloat() + underlineSpace,
-            right,
-            bottom.toFloat() + underlineSpace,
-            textPaint
-        )
-
-        textPaint.color = originalColor
-        textPaint.strokeWidth = underlineThickness
     }
 }
