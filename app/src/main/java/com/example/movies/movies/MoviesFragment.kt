@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.transition.TransitionInflater
 import com.example.movies.R
 import com.example.movies.databinding.FragmentMoviesBinding
@@ -16,7 +17,7 @@ class MoviesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        enterTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
@@ -30,8 +31,10 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+
         binding.toolbar.setNavigationOnClickListener {
-            println("Menu")
+            binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 }
